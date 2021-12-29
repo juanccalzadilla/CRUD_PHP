@@ -27,8 +27,7 @@
 
             require './conexion.php';
 
-            $
-             = $conexion->query("SELECT * from productos");
+            $result = $conexion->query("SELECT * from productos");
             foreach ($result as $product) {
                 echo "<tr>";
 
