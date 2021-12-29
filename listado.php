@@ -27,11 +27,13 @@
 
             require './conexion.php';
 
-            $result = $conexion->query("SELECT * from productos");
+            $statement = $conexion->prepare("SELECT * from productos");
+            $statement->execute();
+            $result = $statement->fetchAll();
             foreach ($result as $product) {
                 echo "<tr>";
 
-                echo "<th scope=\"row\"><button class=\"btn btn-primary\">Details</button></th>";
+                echo "<th scope=\"row\"><a class=\"btn btn-primary\" href=\"./detalles.php?id=$product[id]\">Details</a></th>";
                 echo "<td>$product[id]</td>";
                 echo "<td>$product[nombre]</td>";
                 echo "<td><button class=\"btn btn-danger mx-1\">Delete</button><button class=\"btn btn-warning\">Update</button></td>";
