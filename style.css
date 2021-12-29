@@ -1,0 +1,8 @@
+.bg{
+    background-color: rgb(29, 219, 226);
+}
+
+textarea{
+    height: 200px;
+    resize: none!important;
+}
