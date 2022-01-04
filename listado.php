@@ -35,10 +35,10 @@
                 echo "<th scope=\"row\"><a class=\"btn btn-primary\" href=\"./detalles.php?id=$product[id]\">Details</a></th>";
                 echo "<td>$product[id]</td>";
                 echo "<td>$product[nombre]</td>";
-                echo "<td><a class=\"btn btn-danger mx-2\" href=\"./borrar.php?id=$product[id]\">Delete</a><button class=\"btn btn-warning\">Update</button></td>";
+                echo "<td><a class=\"btn btn-danger mx-2\" href=\"./borrar.php?id=$product[id]\">Delete</a><a href=\"./update.php?id=$product[id]\"class=\"btn btn-warning\">Update</a></td>";
                 echo "</tr>";
             }
-            ?> 
+            ?>
 
         </tbody>
     </table>
