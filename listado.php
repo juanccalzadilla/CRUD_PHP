@@ -32,11 +32,10 @@
             $result = $statement->fetchAll();
             foreach ($result as $product) {
                 echo "<tr>";
-
                 echo "<th scope=\"row\"><a class=\"btn btn-primary\" href=\"./detalles.php?id=$product[id]\">Details</a></th>";
                 echo "<td>$product[id]</td>";
                 echo "<td>$product[nombre]</td>";
-                echo "<td><button class=\"btn btn-danger mx-1\">Delete</button><button class=\"btn btn-warning\">Update</button></td>";
+                echo "<td><a class=\"btn btn-danger mx-2\" href=\"./borrar.php?id=$product[id]\">Delete</a><button class=\"btn btn-warning\">Update</button></td>";
                 echo "</tr>";
             }
             ?> 
