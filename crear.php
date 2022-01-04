@@ -35,16 +35,7 @@ try {
 } catch (PDOException $e) {
     echo "PDOException: " . $e->getMessage();
 }
-
-
-
-
-
-
-
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
