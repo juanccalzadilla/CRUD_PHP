@@ -6,10 +6,15 @@ $statement = $conexion->prepare("SELECT * FROM productos WHERE id = $id");
 $statement->execute();
 $resultado = $statement->fetch();
 
+//AQUI HE CAMBIADO LOS DATOS POR DEFECTO DE LA TABLA YA QUE NO ESTABAN BIEN VICNULADOS COMO VENIA EN CREAR
+if ($resultado){
 
-$cod = $conexion->prepare("SELECT nombre FROM familias WHERE cod = '$resultado[familia]'");
-$cod->execute();
-$rs = $cod->fetch();
+    $cod = $conexion->prepare("SELECT nombre FROM familias WHERE cod = '$resultado[familia]'");
+    $cod->execute();
+    $rs = $cod->fetch();
+}
+
+
 try {
     if (isset($_GET['product']) && isset($_GET['short']) && isset($_GET['price']) && isset($_GET['family']) && isset($_GET['descriptions'])) {
         require './conexion.php';
@@ -61,30 +66,39 @@ try {
     <h1 class="text-center text-white">Update item</h1>
     <form name="create">
         <?php
-        echo '<div class="form-group d-flex">';
-        echo "<input type=\"text\" class=\"form-control w-50 mx-1\" name=\"product\" placeholder=\"Product name\" value=\"$resultado[nombre]\"/>";
-        echo "<input type=\"text\" class=\"form-control w-50 mx-1\" name=\"short\" placeholder=\"Product name\" value=\"$resultado[nombre_corto]\"/>";
-        echo '</div>';
-
-
-        echo '<div class="form-group d-flex">';
-        echo "<input type=\"number\" class=\"form-control mx-1 mt-2\" name=\"price\" placeholder=\"Price($)\" value=\"$resultado[pvp]\"/>";
-        echo "<select class=\"form-select mx-1 mt-2\" name=\"family\">";
-        echo "<option selected value=\"$resultado[familia]\">$rs[nombre]</option>";
-        require './conexion.php';
-        $result = $conexion->query("select * from familias");
-        foreach ($result as $family) {
-            echo "<option value=\"$family[cod]\">$family[nombre]</option>";
+        if ($resultado) {
+            
+            echo '<div class="form-group d-flex">';
+            echo "<input type=\"text\" class=\"form-control w-50 mx-1\" name=\"product\" placeholder=\"Product name\" value=\"$resultado[nombre]\"/>";
+            echo "<input type=\"text\" class=\"form-control w-50 mx-1\" name=\"short\" placeholder=\"Product name\" value=\"$resultado[nombre_corto]\"/>";
+            echo '</div>';
+    
+    
+            echo '<div class="form-group d-flex">';
+            echo "<input type=\"number\" class=\"form-control mx-1 mt-2\" name=\"price\" placeholder=\"Price($)\" value=\"$resultado[pvp]\"/>";
+            echo "<select class=\"form-select mx-1 mt-2\" name=\"family\">";
+            echo "<option selected value=\"$resultado[familia]\">$rs[nombre]</option>";
+            require './conexion.php';
+            $result = $conexion->query("select * from familias");
+            foreach ($result as $family) {
+                echo "<option value=\"$family[cod]\">$family[nombre]</option>";
+            }
+            echo "</select>";
+            echo '</div>';
+    
+            echo "<textarea class=\"form-control mt-2\" name=\"descriptions\" placeholder=\"Description\">$resultado[descripcion]</textarea>";
+            echo "<input type=\"hidden\" class=\"form-control mx-1 mt-2\" name=\"id\" value=\"$id\"/>";
+        }else{
+            echo "<h1 class=\"text-center m-4\">404 ID not found</h1>";
+            echo "<img src=\"./404.svg\"/>";
         }
-        echo "</select>";
-        echo '</div>';
-
-        echo "<textarea class=\"form-control mt-2\" name=\"descriptions\" placeholder=\"Description\">$resultado[descripcion]</textarea>";
-        echo "<input type=\"hidden\" class=\"form-control mx-1 mt-2\" name=\"id\" value=\"$id\"/>";
         ?>
-
-        <button type="submit" class="btn btn-warning m-2">Update item</button>
-        <a href="./listado.php" class="btn btn-secondary m-2">Back List</a>
+       <?php
+       if ($resultado) {
+           echo "<button type=\"submit\" class=\"btn btn-warning m-2 w-100\">Update item</button>";
+       }
+       ?>     
+        <a href="./listado.php" class="btn btn-secondary m-2 w-100">Back List</a>
     </form>
 
 

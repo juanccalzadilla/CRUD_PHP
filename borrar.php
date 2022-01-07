@@ -9,10 +9,8 @@ $statement->execute();
 
 if($statement->rowCount() > 0)
 {
-$count = $statement -> rowCount();
 echo "<div class='content alert alert-primary text-center' > El producto con codigo: $id ha sido eliminado</div>";
 echo "<a class='btn btn-primary text-center w-100' href='listado.php'><- Volver</a>";
-    
 }
 else{
     echo "<div class='content alert alert-danger text-center'> No se pudo eliminar el registro (O ya ha sido eliminado) </div>";

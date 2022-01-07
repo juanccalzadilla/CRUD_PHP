@@ -16,6 +16,9 @@ try {
                     VALUES (null,:nombre,:nombre_corto,:descripcion,:pvp,:familia)                    
                    '
         );
+
+        // He vinculado las variables con los datos para la base de datos de la BD
+        //A lo mejor habia una manera mas sencilla pero fui algo complicado(lo mire en la web)
         $resultado = $statement->execute(array(
 
             ':nombre' => $name,

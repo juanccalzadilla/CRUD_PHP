@@ -24,12 +24,13 @@
         </thead>
         <tbody>
             <?php
-
+// Se crea la conexion a la base de datos (he creado un archivo por separado a ser recurrente)
             require './conexion.php';
 
             $statement = $conexion->prepare("SELECT * from productos");
             $statement->execute();
             $result = $statement->fetchAll();
+            //Creo la tabla mediante foreach usando bootstrap
             foreach ($result as $product) {
                 echo "<tr>";
                 echo "<th scope=\"row\"><a class=\"btn btn-primary\" href=\"./detalles.php?id=$product[id]\">Details</a></th>";
