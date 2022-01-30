@@ -7,4 +7,3 @@ muy agradables.
 
 La conexion se hace mediante mysql en un archivo local, el cual podria ser modificado en
 en el archivo conexion.php. 
-
